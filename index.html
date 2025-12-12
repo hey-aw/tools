@@ -12,9 +12,7 @@
     }
     body {
       margin: 0;
-      min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
       padding: 1.5rem;
     }
@@ -23,340 +21,267 @@
       width: 100%;
       background: rgba(15, 23, 42, 0.95);
       border-radius: 20px;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
       padding: 1.75rem;
       border: 1px solid rgba(148, 163, 184, 0.4);
-      backdrop-filter: blur(12px);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
     }
-    h1 {
-      margin: 0 0 0.25rem;
-      font-size: 1.6rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    @media (max-width: 720px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    label {
-      display: block;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #9ca3af;
-      margin-bottom: 0.35rem;
-    }
+    h1 { font-size: 1.6rem; display: flex; align-items: center; gap: .5rem; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media(max-width: 720px){ .grid { grid-template-columns: 1fr; } }
+    label { display:block; margin-top:.5rem; opacity:.8; font-size:.75rem; }
     input {
-      width: 100%;
-      padding: 0.45rem 0.6rem;
-      border-radius: 0.5rem;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.9);
-      color: #f9fafb;
-      font-size: 0.88rem;
+      width:100%; padding:.5rem; border-radius:.5rem;
+      border:1px solid rgba(55,65,81,.9); background:rgba(15,23,42,.9);
+      color:white;
     }
     button {
-      border: none;
-      border-radius: 999px;
-      padding: 0.45rem 0.9rem;
-      font-size: 0.82rem;
-      cursor: pointer;
-      background: #1f2937;
-      color: #f9fafb;
-      transition: transform 0.05s ease-out;
+      margin-top:.5rem; width:100%; padding:.4rem .6rem;
+      border:none; border-radius:999px; cursor:pointer;
+      background:#1f2937; color:white; font-size:.8rem;
     }
-    button.small { padding: 0.3rem 0.7rem; font-size: 0.78rem; }
-    button.primary {
-      background: linear-gradient(135deg, #22c55e, #14b8a6);
-    }
-    button.danger {
-      background: linear-gradient(135deg, #f97316, #ef4444);
-    }
-    .panel {
-      border-radius: 16px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      padding: 1rem;
-      background: rgba(15, 23, 42, 0.95);
-    }
+    button.primary { background:linear-gradient(135deg,#22c55e,#14b8a6); }
+    button.danger  { background:linear-gradient(135deg,#f97316,#ef4444); }
+    button.small { font-size:.75rem; padding:.3rem .5rem; }
+    .panel { border:1px solid rgba(55,65,81,.9); padding:1rem; border-radius:16px; }
     .log {
-      margin-top: 0.4rem;
-      max-height: 180px;
-      overflow: auto;
-      font-family: monospace;
-      font-size: 0.74rem;
-      background: rgba(2, 6, 23, 0.95);
-      border-radius: 0.75rem;
-      padding: 0.5rem;
-      border: 1px solid rgba(31, 41, 55, 0.95);
+      margin-top:.5rem; max-height:200px; overflow:auto;
+      background:rgba(2,6,23,.9); border:1px solid rgba(55,65,81,.9);
+      border-radius:.5rem; padding:.5rem; font-family:monospace;
+      font-size:.75rem;
     }
     .status-bar {
-      margin-top: .6rem;
-      padding: .5rem;
-      background: rgba(15,23,42,.95);
-      border-radius: 10px;
-      border: 1px solid rgba(55,65,81,.9);
-      font-size: .8rem;
-      display: flex;
-      gap: .5rem;
+      margin-top:.7rem; padding:.5rem; display:flex; gap:.5rem; align-items:center;
+      border:1px solid rgba(55,65,81,.9); border-radius:8px;
+      background:rgba(15,23,42,.9);
     }
     .status-pill {
-      padding: 0.1rem 0.6rem;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      border: 1px solid rgba(148,163,184,0.4);
+      padding:.1rem .6rem; border-radius:999px; font-size:.7rem;
+      border:1px solid rgba(148,163,184,.4);
     }
-    .status-pill.ok { border-color: #6ee7b7; color: #6ee7b7; }
-    .status-pill.err { border-color: #fecaca; color: #fecaca; }
-    .status-pill.anim { border-color: #c7d2fe; color: #c7d2fe; }
+    .status-pill.ok { border-color:#6ee7b7; color:#6ee7b7; }
+    .status-pill.err { border-color:#fecaca; color:#fecaca; }
+    .status-pill.anim { border-color:#c7d2fe; color:#c7d2fe; }
   </style>
 </head>
 <body>
-  <div class="app">
-    <h1>🎄 Festivia Holiday Controller</h1>
+<div class="app">
+  <h1>🎄 Festivia Holiday Controller</h1>
 
-    <div class="grid">
-      <!-- LEFT PANEL -->
-      <div class="panel">
-        <h2>🔌 Bridge Connection</h2>
+  <div class="grid">
+    <!-- LEFT PANEL -->
+    <div class="panel">
+      <h2>🔌 Bridge Connection</h2>
 
-        <label>Bridge IP</label>
-        <input id="bridgeIp" placeholder="192.168.x.x" />
+      <label>Bridge IP</label>
+      <input id="bridgeIp" placeholder="Auto-detect or enter manually" />
 
-        <label style="margin-top: .5rem;">API Key</label>
-        <input id="apiKey" placeholder="Hue username" />
+      <button id="discoverBridgeBtn" class="small">🔍 Auto-Discover Hue Bridge</button>
 
-        <label style="margin-top: .5rem;">Festivia Light ID</label>
-        <input id="lightId" placeholder="e.g. 12" />
+      <label>API Key</label>
+      <input id="apiKey" placeholder="Hue API key" />
 
-        <button id="testBtn" class="primary small" style="margin-top: .7rem; width: 100%;">Test Connection</button>
+      <label>Selected Light ID</label>
+      <input id="lightId" placeholder="Auto-select after scanning" />
 
-        <!-- NEW LIST LIGHTS BUTTON -->
-        <button id="listLightsBtn" class="small" style="margin-top: .7rem; width: 100%;">
-          💡 List Lights
-        </button>
+      <button id="testBtn" class="primary small">Test Connection</button>
+      <button id="listLightsBtn" class="small">💡 List Lights</button>
 
-        <div id="lightsList" style="
-          margin-top: 0.5rem;
-          padding: 0.5rem;
-          background: rgba(2,6,23,0.85);
-          border-radius: 0.5rem;
-          border: 1px solid rgba(55,65,81,0.7);
-          font-size: 0.8rem;
-          max-height: 180px;
-          overflow-y: auto;
-          display: none;
-        "></div>
+      <!-- LIGHT LIST -->
+      <div id="lightsList" style="
+        margin-top: 0.5rem; padding: 0.5rem; display:none;
+        background:rgba(2,6,23,.85); border-radius:.5rem;
+        border:1px solid rgba(55,65,81,.7); max-height:230px; overflow-y:auto;
+      "></div>
 
-        <div class="status-bar">
-          <span id="statusMode" class="status-pill">IDLE</span>
-          <span id="statusText" style="flex: 1;">Ready.</span>
-        </div>
-      </div>
-
-      <!-- RIGHT PANEL: Animations -->
-      <div class="panel">
-        <h2>🎆 Animations</h2>
-
-        <button class="primary small anim-btn" data-anim="candyCane">🍬 Candy Cane</button>
-        <button class="primary small anim-btn" data-anim="aurora">🌌 Aurora</button>
-        <button class="primary small anim-btn" data-anim="snowfall">❄️ Snowfall</button>
-        <button class="primary small anim-btn" data-anim="fireplace">🔥 Fireplace</button>
-
-        <button id="stopAnimBtn" class="danger small" style="margin-top: .7rem;">⏹ Stop Animations</button>
-
-        <div class="log" id="log"></div>
+      <div class="status-bar">
+        <span id="statusMode" class="status-pill">IDLE</span>
+        <span id="statusText" style="flex:1;">Ready.</span>
       </div>
     </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="panel">
+      <h2>🎆 Animations</h2>
+
+      <button class="primary small anim-btn" data-anim="candyCane">🍬 Candy Cane</button>
+      <button class="primary small anim-btn" data-anim="aurora">🌌 Aurora</button>
+      <button class="primary small anim-btn" data-anim="snowfall">❄️ Snowfall</button>
+      <button class="primary small anim-btn" data-anim="fireplace">🔥 Fireplace</button>
+
+      <button id="stopAnimBtn" class="danger small">⏹ Stop Animations</button>
+
+      <div id="log" class="log"></div>
+    </div>
   </div>
+</div>
 
 <script>
-/* --------------------------------------------------------
-   Basic Hue Helpers
----------------------------------------------------------*/
+/* -------------------------- LOG + STATUS -------------------------- */
 
-function log(msg) {
-  const el = document.getElementById("log");
-  const line = document.createElement("div");
-  line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
-  el.appendChild(line);
+function log(msg){
+  const el=document.getElementById("log");
+  el.innerHTML += `[${new Date().toLocaleTimeString()}] ${msg}<br>`;
   el.scrollTop = el.scrollHeight;
 }
 
-function setStatus(mode, text, kind) {
-  const m = document.getElementById("statusMode");
-  const t = document.getElementById("statusText");
+function setStatus(mode, text, kind){
+  const m=document.getElementById("statusMode");
+  const t=document.getElementById("statusText");
 
   m.textContent = mode.toUpperCase();
   t.textContent = text;
 
   m.className = "status-pill";
-  if (kind === "ok") m.classList.add("ok");
-  if (kind === "err") m.classList.add("err");
-  if (kind === "anim") m.classList.add("anim");
+  if(kind==="ok") m.classList.add("ok");
+  if(kind==="err") m.classList.add("err");
+  if(kind==="anim") m.classList.add("anim");
 }
 
-function baseUrl() {
-  const ip = document.getElementById("bridgeIp").value.trim();
-  const key = document.getElementById("apiKey").value.trim();
-  return `http://${ip}/api/${key}`;
+/* -------------------------- API HELPERS --------------------------- */
+
+function baseUrl(){
+  return `http://${document.getElementById("bridgeIp").value}/api/${document.getElementById("apiKey").value}`;
 }
 
-async function hueGet(path) {
-  const url = baseUrl() + path;
+async function hueGet(path){
   log("GET " + path);
-  const res = await fetch(url);
+  const res = await fetch(baseUrl() + path);
   return { data: await res.json(), res };
 }
 
-async function huePut(path, body) {
-  const url = baseUrl() + path;
+async function huePut(path, body){
   log("PUT " + path + " " + JSON.stringify(body));
-  const res = await fetch(url, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+  const res = await fetch(baseUrl() + path, {
+    method:"PUT",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify(body)
   });
   return { data: await res.json(), res };
 }
 
-/* --------------------------------------------------------
-   Connection Test
----------------------------------------------------------*/
+/* -------------------------- AUTO DISCOVER BRIDGE --------------------------- */
 
-document.getElementById("testBtn").addEventListener("click", async () => {
-  try {
-    const lightId = document.getElementById("lightId").value.trim();
-    const { data, res } = await hueGet(`/lights/${lightId}`);
+document.getElementById("discoverBridgeBtn").addEventListener("click", async()=>{
+  try{
+    setStatus("search","Finding bridge…");
 
-    if (!res.ok) {
-      setStatus("error", "Light not found", "err");
+    const res = await fetch("https://discovery.meethue.com");
+    const bridges = await res.json();
+
+    if(!bridges.length){
+      setStatus("error","No bridge found", "err");
       return;
     }
 
-    setStatus("ok", `Connected to ${data.name}`, "ok");
-  } catch (e) {
-    setStatus("error", e.message, "err");
+    const ip = bridges[0].internalipaddress;
+    document.getElementById("bridgeIp").value = ip;
+
+    setStatus("ok", `Bridge found at ${ip}`, "ok");
+    log("Bridge discovered: "+ip);
+  } catch(err){
+    setStatus("error", err.message, "err");
   }
 });
 
-/* --------------------------------------------------------
-   NEW: List Lights
----------------------------------------------------------*/
+/* -------------------------- TEST LIGHT --------------------------- */
 
-document.getElementById("listLightsBtn").addEventListener("click", async () => {
-  try {
-    setStatus("loading", "Fetching lights...");
+document.getElementById("testBtn").addEventListener("click", async()=>{
+  try{
+    const id = document.getElementById("lightId").value;
+    const {data,res}=await hueGet(`/lights/${id}`);
 
-    const { data, res } = await hueGet("/lights");
+    if(!res.ok){
+      setStatus("error","Light not found","err");
+      return;
+    }
 
-    if (!res.ok) {
-      setStatus("error", "Error fetching lights", "err");
+    setStatus("ok",`Connected to ${data.name}`,"ok");
+  }catch(err){
+    setStatus("error",err.message,"err");
+  }
+});
+
+/* -------------------------- LIST + AUTO-DETECT FESTIVIA -------------------------- */
+
+document.getElementById("listLightsBtn").addEventListener("click", async ()=>{
+  try{
+    setStatus("loading","Fetching lights…");
+
+    const {data,res} = await hueGet("/lights");
+
+    if(!res.ok){
+      setStatus("error","Could not get lights","err");
       return;
     }
 
     const container = document.getElementById("lightsList");
-    let html = "<strong>Available Lights:</strong><br><br>";
-
-    Object.keys(data).forEach(id => {
-      const l = data[id];
-      html += `
-        <div style="margin-bottom: .4rem;">
-          <span style="color:#93c5fd;">#${id}</span> —
-          <strong>${l.name}</strong><br>
-          <span style="opacity:.7;">${l.type}</span>
-        </div>
-      `;
-    });
-
-    container.innerHTML = html;
+    container.innerHTML = "";
     container.style.display = "block";
 
-    setStatus("ok", "Lights loaded", "ok");
-    log(`Listed ${Object.keys(data).length} lights.`);
-  } catch (e) {
-    setStatus("error", e.message, "err");
+    for(const id in data){
+      const light = data[id];
+      const isFestivia = (light.modelid || "").startsWith("LCX");
+      const badge = isFestivia ? ` <span style="color:#facc15;">★ Festivia</span>` : "";
+
+      const row=document.createElement("div");
+      row.style.padding=".4rem";
+      row.style.cursor="pointer";
+      row.style.borderBottom="1px solid rgba(255,255,255,.08)";
+
+      row.innerHTML = `
+        <strong style="color:#93c5fd;">#${id}</strong> — ${light.name}${badge}<br>
+        <span style="opacity:.7;">${light.type}</span>
+      `;
+
+      row.addEventListener("click",()=>{
+        document.getElementById("lightId").value=id;
+        setStatus("ok",`Selected Light #${id} (${light.name})`,"ok");
+      });
+
+      container.appendChild(row);
+
+      if(isFestivia){
+        document.getElementById("lightId").value=id;
+        setStatus("ok",`Auto-selected Festivia #${id}`,"ok");
+      }
+    }
+
+    setStatus("ok","Lights loaded. Click one to select.","ok");
+  }catch(err){
+    setStatus("error",err.message,"err");
   }
 });
 
-/* --------------------------------------------------------
-   Animations
----------------------------------------------------------*/
+/* -------------------------- ANIMATIONS -------------------------- */
 
-let timer = null;
-let current = null;
+let timer=null;
 
-const Anim = {
-  candyCane: async step => {
-    const red = step % 2 === 0;
-    return huePut(`/lights/${lightId.value}/state`, {
-      on: true,
-      bri: 200,
-      sat: red ? 254 : 10,
-      hue: red ? 0 : 40000,
-      transitiontime: 2
-    });
-  },
-
-  aurora: async step => {
-    const hues = [15000, 25000, 35000, 45000, 55000];
-    return huePut(`/lights/${lightId.value}/state`, {
-      on: true,
-      bri: 170,
-      sat: 254,
-      hue: hues[step % hues.length],
-      transitiontime: 3
-    });
-  },
-
-  snowfall: async step => {
-    const flick = Math.floor(Math.random() * 40 - 20);
-    return huePut(`/lights/${lightId.value}/state`, {
-      on: true,
-      bri: 200 + flick,
-      sat: 20,
-      hue: 42000,
-      transitiontime: 2
-    });
-  },
-
-  fireplace: async step => {
-    const flick = Math.floor(Math.random() * 60 - 30);
-    return huePut(`/lights/${lightId.value}/state`, {
-      on: true,
-      bri: 180 + flick,
-      sat: 230,
-      hue: 9000 + Math.floor(Math.random() * 4000 - 2000),
-      transitiontime: 2
-    });
-  }
+const Anim={
+  candyCane:step=>huePut(`/lights/${lightId.value}/state`,
+    {on:true,bri:200,sat:step%2?10:254,hue:step%2?40000:0,transitiontime:2}),
+  aurora:step=>huePut(`/lights/${lightId.value}/state`,
+    {on:true,bri:170,sat:254,hue:[15000,25000,35000,45000,55000][step%5],transitiontime:3}),
+  snowfall:step=>huePut(`/lights/${lightId.value}/state`,
+    {on:true,bri:200+(Math.random()*40-20),sat:20,hue:42000,transitiontime:2}),
+  fireplace:step=>huePut(`/lights/${lightId.value}/state`,
+    {on:true,bri:180+(Math.random()*60-30),sat:230,hue:9000+(Math.random()*4000-2000),transitiontime:2})
 };
 
-document.querySelectorAll(".anim-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const key = btn.dataset.anim;
+document.querySelectorAll(".anim-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const key=btn.dataset.anim;
+    if(timer)clearInterval(timer);
 
-    if (timer) clearInterval(timer);
-    current = key;
+    let step=0;
+    timer=setInterval(()=>Anim[key](step++),800);
 
-    let step = 0;
-    timer = setInterval(() => Anim[key](step++), 800);
-
-    setStatus("anim", `Running ${key}`, "anim");
+    setStatus("anim",`Running ${key}`,"anim");
   });
 });
 
-document.getElementById("stopAnimBtn").addEventListener("click", () => {
-  if (timer) clearInterval(timer);
-  timer = null;
-  current = null;
-  setStatus("idle", "Animations stopped");
+document.getElementById("stopAnimBtn").addEventListener("click",()=>{
+  if(timer)clearInterval(timer);
+  setStatus("idle","Animations stopped");
 });
 </script>
 </body>
