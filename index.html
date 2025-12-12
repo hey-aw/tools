@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont;
       background: radial-gradient(circle at top, #12233b 0, #050814 55%, #02030a 100%);
       color: #f9fafb;
     }
@@ -24,7 +24,7 @@
       background: rgba(15, 23, 42, 0.95);
       border-radius: 20px;
       box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
-      padding: 1.75rem 1.75rem 2rem;
+      padding: 1.75rem;
       border: 1px solid rgba(148, 163, 184, 0.4);
       backdrop-filter: blur(12px);
     }
@@ -35,23 +35,14 @@
       align-items: center;
       gap: 0.5rem;
     }
-    h1 span.emoji {
-      font-size: 1.8rem;
-    }
-    .subtitle {
-      margin-bottom: 1.25rem;
-      color: #e5e7eb;
-      font-size: 0.9rem;
-      opacity: 0.85;
-    }
     .grid {
       display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
     }
     @media (max-width: 720px) {
       .grid {
-        grid-template-columns: minmax(0, 1fr);
+        grid-template-columns: 1fr;
       }
     }
     label {
@@ -70,26 +61,6 @@
       background: rgba(15, 23, 42, 0.9);
       color: #f9fafb;
       font-size: 0.88rem;
-      outline: none;
-      box-sizing: border-box;
-    }
-    input:focus {
-      border-color: #38bdf8;
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.5);
-    }
-    .row {
-      display: flex;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-    .row > div {
-      flex: 1;
-    }
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 0.75rem 0 1rem;
     }
     button {
       border: none;
@@ -99,601 +70,294 @@
       cursor: pointer;
       background: #1f2937;
       color: #f9fafb;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: transform 0.05s ease-out, box-shadow 0.05s ease-out, background 0.15s ease-out;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.9);
+      transition: transform 0.05s ease-out;
     }
+    button.small { padding: 0.3rem 0.7rem; font-size: 0.78rem; }
     button.primary {
       background: linear-gradient(135deg, #22c55e, #14b8a6);
-      box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
     }
     button.danger {
       background: linear-gradient(135deg, #f97316, #ef4444);
-      box-shadow: 0 10px 30px rgba(239, 68, 68, 0.45);
-    }
-    button.small {
-      padding: 0.3rem 0.7rem;
-      font-size: 0.78rem;
-    }
-    button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
-      filter: brightness(1.05);
-    }
-    button:active {
-      transform: translateY(0px) scale(0.98);
-      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.9);
-    }
-    button:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-      box-shadow: none;
-      transform: none;
-    }
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-    }
-    .chip {
-      border-radius: 999px;
-      padding: 0.25rem 0.7rem;
-      font-size: 0.74rem;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      color: #e5e7eb;
-      background: rgba(15, 23, 42, 0.9);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-    .chip span.dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #fbbf24 0, #f97316 60%, #b91c1c 100%);
     }
     .panel {
       border-radius: 16px;
       border: 1px solid rgba(55, 65, 81, 0.9);
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.07), transparent 55%),
-                  radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.06), transparent 55%),
-                  rgba(15, 23, 42, 0.95);
-      padding: 0.9rem 0.9rem 0.8rem;
+      padding: 1rem;
+      background: rgba(15, 23, 42, 0.95);
     }
-    .panel h2 {
-      margin: 0 0 0.6rem;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .panel h2 span {
-      font-size: 1.1rem;
-    }
-    .panel p {
-      margin: 0 0 0.5rem;
-      font-size: 0.8rem;
-      color: #d1d5db;
-      opacity: 0.9;
-    }
-    .panel small {
-      font-size: 0.72rem;
-      color: #9ca3af;
-      display: block;
-      margin-top: 0.35rem;
+    .log {
+      margin-top: 0.4rem;
+      max-height: 180px;
+      overflow: auto;
+      font-family: monospace;
+      font-size: 0.74rem;
+      background: rgba(2, 6, 23, 0.95);
+      border-radius: 0.75rem;
+      padding: 0.5rem;
+      border: 1px solid rgba(31, 41, 55, 0.95);
     }
     .status-bar {
-      margin-top: 0.6rem;
-      padding: 0.45rem 0.6rem;
+      margin-top: .6rem;
+      padding: .5rem;
+      background: rgba(15,23,42,.95);
       border-radius: 10px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      font-size: 0.78rem;
-      color: #e5e7eb;
+      border: 1px solid rgba(55,65,81,.9);
+      font-size: .8rem;
       display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      min-height: 2.1rem;
+      gap: .5rem;
     }
     .status-pill {
       padding: 0.1rem 0.6rem;
       border-radius: 999px;
       font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: #9ca3af;
+      border: 1px solid rgba(148,163,184,0.4);
     }
-    .status-pill.ok {
-      border-color: rgba(52, 211, 153, 0.7);
-      color: #6ee7b7;
-    }
-    .status-pill.err {
-      border-color: rgba(248, 113, 113, 0.7);
-      color: #fecaca;
-    }
-    .status-pill.anim {
-      border-color: rgba(129, 140, 248, 0.8);
-      color: #c7d2fe;
-    }
-    .status-text {
-      flex: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .status-icon {
-      font-size: 1rem;
-    }
-    .log {
-      margin-top: 0.4rem;
-      max-height: 140px;
-      overflow: auto;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 0.74rem;
-      background: rgba(2, 6, 23, 0.95);
-      border-radius: 0.75rem;
-      padding: 0.5rem 0.6rem;
-      border: 1px solid rgba(31, 41, 55, 0.95);
-      color: #e5e7eb;
-    }
-    .log-line {
-      opacity: 0.82;
-    }
-    .log-line time {
-      color: #6b7280;
-      margin-right: 0.3rem;
-    }
-    .slider-row {
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-      margin-top: 0.35rem;
-    }
-    .slider-row input[type="range"] {
-      flex: 1;
-      padding: 0;
-      background: transparent;
-    }
-    .slider-row span {
-      width: 2rem;
-      font-size: 0.78rem;
-      text-align: right;
-      color: #e5e7eb;
-    }
-    .badge-row {
-      display: flex;
-      gap: 0.3rem;
-      flex-wrap: wrap;
-      margin-top: 0.4rem;
-    }
-    .badge {
-      font-size: 0.7rem;
-      padding: 0.15rem 0.5rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: #9ca3af;
-      background: rgba(15, 23, 42, 0.95);
-    }
+    .status-pill.ok { border-color: #6ee7b7; color: #6ee7b7; }
+    .status-pill.err { border-color: #fecaca; color: #fecaca; }
+    .status-pill.anim { border-color: #c7d2fe; color: #c7d2fe; }
   </style>
 </head>
 <body>
   <div class="app">
-    <h1>
-      <span class="emoji">🎄</span>
-      Festivia Holiday Controller
-    </h1>
-    <div class="subtitle">
-      Direct control of your Hue Festivia string with animated holiday scenes — right from this one tiny page.
-    </div>
-
-    <div class="chip-row" style="margin-bottom: 1rem;">
-      <div class="chip"><span class="dot"></span> Designed for Hue Festivia (any color light also works)</div>
-      <div class="chip">Uses Hue v1 local REST API</div>
-      <div class="chip">No build tools. One HTML file.</div>
-    </div>
+    <h1>🎄 Festivia Holiday Controller</h1>
 
     <div class="grid">
-      <!-- LEFT: Connection & basic controls -->
-      <div>
-        <div class="panel">
-          <h2><span>🔌</span> Bridge connection</h2>
-          <p>Fill these in from the Hue app / developer portal, then hit <strong>Test connection</strong>.</p>
+      <!-- LEFT PANEL -->
+      <div class="panel">
+        <h2>🔌 Bridge Connection</h2>
 
-          <div class="row">
-            <div>
-              <label for="bridgeIp">Bridge IP</label>
-              <input id="bridgeIp" placeholder="e.g. 192.168.1.50" />
-            </div>
-            <div>
-              <label for="apiKey">Hue API key</label>
-              <input id="apiKey" placeholder="Hue username / key" />
-            </div>
-          </div>
+        <label>Bridge IP</label>
+        <input id="bridgeIp" placeholder="192.168.x.x" />
 
-          <div class="row">
-            <div>
-              <label for="lightId">Festivia light ID</label>
-              <input id="lightId" placeholder="e.g. 12" />
-            </div>
-            <div>
-              <label>&nbsp;</label>
-              <button id="testBtn" class="primary" style="width: 100%;">
-                <span>Test connection</span>
-              </button>
-            </div>
-          </div>
+        <label style="margin-top: .5rem;">API Key</label>
+        <input id="apiKey" placeholder="Hue username" />
 
-          <div class="slider-row">
-            <label style="margin: 0;">Brightness</label>
-            <input id="briSlider" type="range" min="1" max="254" value="200" />
-            <span id="briValue">200</span>
-          </div>
-          <div class="slider-row">
-            <label style="margin: 0;">Speed</label>
-            <input id="speedSlider" type="range" min="150" max="2000" value="800" />
-            <span id="speedValue">0.8s</span>
-          </div>
+        <label style="margin-top: .5rem;">Festivia Light ID</label>
+        <input id="lightId" placeholder="e.g. 12" />
 
-          <div class="btn-row">
-            <button id="onBtn" class="small">💡 On</button>
-            <button id="offBtn" class="small">🌑 Off</button>
-            <button id="sparkleBtn" class="small">✨ Sparkle white</button>
-            <button id="warmGlowBtn" class="small">🕯 Warm glow</button>
-          </div>
+        <button id="testBtn" class="primary small" style="margin-top: .7rem; width: 100%;">Test Connection</button>
 
-          <small>
-            Tip: This page talks directly to your bridge
-            (<code>http://bridge-ip/api/...</code>).  
-            If your browser complains about CORS, serve this file via a tiny local web server or proxy to the bridge.
-          </small>
+        <!-- NEW LIST LIGHTS BUTTON -->
+        <button id="listLightsBtn" class="small" style="margin-top: .7rem; width: 100%;">
+          💡 List Lights
+        </button>
 
-          <div class="status-bar" id="statusBar">
-            <span class="status-pill" id="statusMode">IDLE</span>
-            <span class="status-text" id="statusText">Ready when you are.</span>
-            <span class="status-icon" id="statusIcon">🧰</span>
-          </div>
+        <div id="lightsList" style="
+          margin-top: 0.5rem;
+          padding: 0.5rem;
+          background: rgba(2,6,23,0.85);
+          border-radius: 0.5rem;
+          border: 1px solid rgba(55,65,81,0.7);
+          font-size: 0.8rem;
+          max-height: 180px;
+          overflow-y: auto;
+          display: none;
+        "></div>
+
+        <div class="status-bar">
+          <span id="statusMode" class="status-pill">IDLE</span>
+          <span id="statusText" style="flex: 1;">Ready.</span>
         </div>
       </div>
 
-      <!-- RIGHT: Animations & logs -->
-      <div>
-        <div class="panel" style="margin-bottom: 0.9rem;">
-          <h2><span>🎆</span> Epic holiday animations</h2>
-          <p>These are simple light “programs” that push color + brightness changes on a loop.</p>
+      <!-- RIGHT PANEL: Animations -->
+      <div class="panel">
+        <h2>🎆 Animations</h2>
 
-          <div class="btn-row">
-            <button class="primary small anim-btn" data-anim="candyCane">🍬 Candy Cane Chase</button>
-            <button class="primary small anim-btn" data-anim="aurora">🌌 Winter Aurora</button>
-            <button class="primary small anim-btn" data-anim="snowfall">❄️ Snowfall Sparkle</button>
-            <button class="primary small anim-btn" data-anim="fireplace">🔥 Hearth Flicker</button>
-          </div>
-          <div class="btn-row">
-            <button id="stopAnimBtn" class="danger small">
-              ⏹ Stop animations
-            </button>
-          </div>
+        <button class="primary small anim-btn" data-anim="candyCane">🍬 Candy Cane</button>
+        <button class="primary small anim-btn" data-anim="aurora">🌌 Aurora</button>
+        <button class="primary small anim-btn" data-anim="snowfall">❄️ Snowfall</button>
+        <button class="primary small anim-btn" data-anim="fireplace">🔥 Fireplace</button>
 
-          <div class="badge-row">
-            <div class="badge">Hue color mode: <code>hs</code> (hue/sat)</div>
-            <div class="badge">Animation = series of <code>PUT /state</code></div>
-            <div class="badge">Speed slider controls loop interval</div>
-          </div>
+        <button id="stopAnimBtn" class="danger small" style="margin-top: .7rem;">⏹ Stop Animations</button>
 
-          <small>
-            Festivia supports fancy gradient effects through the newer Hue v2 API.  
-            For maximum compatibility, this page uses the classic v1 light control.  
-            These presets still look great on a Festivia string.
-          </small>
-
-          <div class="log" id="log"></div>
-        </div>
+        <div class="log" id="log"></div>
       </div>
     </div>
   </div>
 
-  <script>
-    // --- Minimal SPA logic for Hue v1 local API ---
-    // We treat Festivia like a color bulb: PUT /api/<key>/lights/<id>/state
-    // with fields like on, bri, hue, sat, transitiontime.
+<script>
+/* --------------------------------------------------------
+   Basic Hue Helpers
+---------------------------------------------------------*/
 
-    const bridgeIpInput   = document.getElementById('bridgeIp');
-    const apiKeyInput     = document.getElementById('apiKey');
-    const lightIdInput    = document.getElementById('lightId');
-    const testBtn         = document.getElementById('testBtn');
-    const onBtn           = document.getElementById('onBtn');
-    const offBtn          = document.getElementById('offBtn');
-    const sparkleBtn      = document.getElementById('sparkleBtn');
-    const warmGlowBtn     = document.getElementById('warmGlowBtn');
-    const animButtons     = document.querySelectorAll('.anim-btn');
-    const stopAnimBtn     = document.getElementById('stopAnimBtn');
-    const briSlider       = document.getElementById('briSlider');
-    const briValue        = document.getElementById('briValue');
-    const speedSlider     = document.getElementById('speedSlider');
-    const speedValue      = document.getElementById('speedValue');
-    const statusBar       = document.getElementById('statusBar');
-    const statusMode      = document.getElementById('statusMode');
-    const statusText      = document.getElementById('statusText');
-    const statusIcon      = document.getElementById('statusIcon');
-    const logEl           = document.getElementById('log');
+function log(msg) {
+  const el = document.getElementById("log");
+  const line = document.createElement("div");
+  line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+  el.appendChild(line);
+  el.scrollTop = el.scrollHeight;
+}
 
-    let currentAnimation = null;
-    let animationTimer   = null;
+function setStatus(mode, text, kind) {
+  const m = document.getElementById("statusMode");
+  const t = document.getElementById("statusText");
 
-    function nowTime() {
-      const d = new Date();
-      return d.toLocaleTimeString();
+  m.textContent = mode.toUpperCase();
+  t.textContent = text;
+
+  m.className = "status-pill";
+  if (kind === "ok") m.classList.add("ok");
+  if (kind === "err") m.classList.add("err");
+  if (kind === "anim") m.classList.add("anim");
+}
+
+function baseUrl() {
+  const ip = document.getElementById("bridgeIp").value.trim();
+  const key = document.getElementById("apiKey").value.trim();
+  return `http://${ip}/api/${key}`;
+}
+
+async function hueGet(path) {
+  const url = baseUrl() + path;
+  log("GET " + path);
+  const res = await fetch(url);
+  return { data: await res.json(), res };
+}
+
+async function huePut(path, body) {
+  const url = baseUrl() + path;
+  log("PUT " + path + " " + JSON.stringify(body));
+  const res = await fetch(url, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  return { data: await res.json(), res };
+}
+
+/* --------------------------------------------------------
+   Connection Test
+---------------------------------------------------------*/
+
+document.getElementById("testBtn").addEventListener("click", async () => {
+  try {
+    const lightId = document.getElementById("lightId").value.trim();
+    const { data, res } = await hueGet(`/lights/${lightId}`);
+
+    if (!res.ok) {
+      setStatus("error", "Light not found", "err");
+      return;
     }
 
-    function appendLog(text) {
-      const line = document.createElement('div');
-      line.className = 'log-line';
-      line.innerHTML = `<time>[${nowTime()}]</time>${text}`;
-      logEl.appendChild(line);
-      logEl.scrollTop = logEl.scrollHeight;
+    setStatus("ok", `Connected to ${data.name}`, "ok");
+  } catch (e) {
+    setStatus("error", e.message, "err");
+  }
+});
+
+/* --------------------------------------------------------
+   NEW: List Lights
+---------------------------------------------------------*/
+
+document.getElementById("listLightsBtn").addEventListener("click", async () => {
+  try {
+    setStatus("loading", "Fetching lights...");
+
+    const { data, res } = await hueGet("/lights");
+
+    if (!res.ok) {
+      setStatus("error", "Error fetching lights", "err");
+      return;
     }
 
-    function setStatus(mode, text, type = 'idle') {
-      statusMode.textContent = mode.toUpperCase();
-      statusText.textContent = text;
-      statusIcon.textContent =
-        type === 'ok' ? '✅' :
-        type === 'err' ? '⚠️' :
-        type === 'anim' ? '🎶' : '🧰';
+    const container = document.getElementById("lightsList");
+    let html = "<strong>Available Lights:</strong><br><br>";
 
-      statusMode.classList.remove('ok', 'err', 'anim');
-      if (type === 'ok') statusMode.classList.add('ok');
-      else if (type === 'err') statusMode.classList.add('err');
-      else if (type === 'anim') statusMode.classList.add('anim');
-    }
-
-    function getBaseUrl() {
-      const ip = bridgeIpInput.value.trim();
-      const key = apiKeyInput.value.trim();
-      if (!ip || !key) {
-        throw new Error('Bridge IP and API key are required.');
-      }
-      return `http://${ip}/api/${key}`;
-    }
-
-    function getLightId() {
-      const id = lightIdInput.value.trim();
-      if (!id) {
-        throw new Error('Festivia light ID is required.');
-      }
-      return id;
-    }
-
-    async function hueRequest(path, options = {}) {
-      const url = getBaseUrl() + path;
-      appendLog(`→ ${options.method || 'GET'} ${path}`);
-      const res = await fetch(url, {
-        method: options.method || 'GET',
-        headers: { 'Content-Type': 'application/json' },
-        body: options.body ? JSON.stringify(options.body) : undefined,
-      });
-
-      let data;
-      try {
-        data = await res.json();
-      } catch (err) {
-        data = null;
-      }
-
-      appendLog(`← status ${res.status} ${data ? JSON.stringify(data) : ''}`);
-      return { res, data };
-    }
-
-    async function setLightState(state) {
-      const lightId = getLightId();
-      try {
-        await hueRequest(`/lights/${encodeURIComponent(lightId)}/state`, {
-          method: 'PUT',
-          body: state,
-        });
-      } catch (err) {
-        appendLog(`Error setting light state: ${err.message}`);
-        setStatus('error', err.message, 'err');
-      }
-    }
-
-    // --- Basic controls ---
-
-    testBtn.addEventListener('click', async () => {
-      try {
-        setStatus('testing', 'Checking light status…');
-        const lightId = getLightId();
-        const { res, data } = await hueRequest(`/lights/${encodeURIComponent(lightId)}`);
-        if (!res.ok) {
-          setStatus('error', `Bridge error: HTTP ${res.status}`, 'err');
-          return;
-        }
-        setStatus('connected', `Found light "${data.name || lightId}"`, 'ok');
-      } catch (err) {
-        setStatus('error', err.message, 'err');
-        appendLog(`Test connection failed: ${err.message}`);
-      }
+    Object.keys(data).forEach(id => {
+      const l = data[id];
+      html += `
+        <div style="margin-bottom: .4rem;">
+          <span style="color:#93c5fd;">#${id}</span> —
+          <strong>${l.name}</strong><br>
+          <span style="opacity:.7;">${l.type}</span>
+        </div>
+      `;
     });
 
-    onBtn.addEventListener('click', async () => {
-      await setLightState({ on: true, bri: Number(briSlider.value) || 200 });
-      setStatus('on', 'Festivia turned on.', 'ok');
+    container.innerHTML = html;
+    container.style.display = "block";
+
+    setStatus("ok", "Lights loaded", "ok");
+    log(`Listed ${Object.keys(data).length} lights.`);
+  } catch (e) {
+    setStatus("error", e.message, "err");
+  }
+});
+
+/* --------------------------------------------------------
+   Animations
+---------------------------------------------------------*/
+
+let timer = null;
+let current = null;
+
+const Anim = {
+  candyCane: async step => {
+    const red = step % 2 === 0;
+    return huePut(`/lights/${lightId.value}/state`, {
+      on: true,
+      bri: 200,
+      sat: red ? 254 : 10,
+      hue: red ? 0 : 40000,
+      transitiontime: 2
     });
+  },
 
-    offBtn.addEventListener('click', async () => {
-      await stopAnimations();
-      await setLightState({ on: false });
-      setStatus('off', 'Festivia turned off.', 'ok');
+  aurora: async step => {
+    const hues = [15000, 25000, 35000, 45000, 55000];
+    return huePut(`/lights/${lightId.value}/state`, {
+      on: true,
+      bri: 170,
+      sat: 254,
+      hue: hues[step % hues.length],
+      transitiontime: 3
     });
+  },
 
-    sparkleBtn.addEventListener('click', async () => {
-      // Cool white sparkle: high sat? Actually we use low sat for white.
-      await setLightState({
-        on: true,
-        bri: Number(briSlider.value) || 230,
-        sat: 30,
-        hue: 40000, // slightly cool
-        transitiontime: 2,
-      });
-      setStatus('sparkle', 'Cool white sparkle base applied.', 'ok');
+  snowfall: async step => {
+    const flick = Math.floor(Math.random() * 40 - 20);
+    return huePut(`/lights/${lightId.value}/state`, {
+      on: true,
+      bri: 200 + flick,
+      sat: 20,
+      hue: 42000,
+      transitiontime: 2
     });
+  },
 
-    warmGlowBtn.addEventListener('click', async () => {
-      // Warm candle glow
-      await setLightState({
-        on: true,
-        bri: Number(briSlider.value) || 180,
-        sat: 200,
-        hue: 8000, // warm orange
-        transitiontime: 4,
-      });
-      setStatus('warm', 'Cozy warm glow set.', 'ok');
+  fireplace: async step => {
+    const flick = Math.floor(Math.random() * 60 - 30);
+    return huePut(`/lights/${lightId.value}/state`, {
+      on: true,
+      bri: 180 + flick,
+      sat: 230,
+      hue: 9000 + Math.floor(Math.random() * 4000 - 2000),
+      transitiontime: 2
     });
+  }
+};
 
-    briSlider.addEventListener('input', () => {
-      briValue.textContent = briSlider.value;
-    });
+document.querySelectorAll(".anim-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const key = btn.dataset.anim;
 
-    speedSlider.addEventListener('input', () => {
-      const ms = Number(speedSlider.value);
-      speedValue.textContent = (ms / 1000).toFixed(1) + 's';
-    });
+    if (timer) clearInterval(timer);
+    current = key;
 
-    // --- Animation engine ---
+    let step = 0;
+    timer = setInterval(() => Anim[key](step++), 800);
 
-    const Animations = {
-      // Candy cane: alternate vivid red / icy white
-      candyCane: {
-        name: 'Candy Cane Chase',
-        async tick(step) {
-          const bri = Number(briSlider.value) || 200;
-          const isRed = step % 2 === 0;
-          const state = isRed
-            ? { on: true, bri, sat: 254, hue: 0, transitiontime: 3 }
-            : { on: true, bri, sat: 20, hue: 40000, transitiontime: 3 };
-          await setLightState(state);
-        },
-      },
+    setStatus("anim", `Running ${key}`, "anim");
+  });
+});
 
-      // Aurora: slowly walk hue through green, teal, blue, magenta with high saturation
-      aurora: {
-        name: 'Winter Aurora',
-        async tick(step) {
-          const bri = Number(briSlider.value) || 170;
-          const hues = [15000, 25000, 35000, 45000, 55000]; // greenish -> purple
-          const idx = step % hues.length;
-          await setLightState({
-            on: true,
-            bri,
-            sat: 254,
-            hue: hues[idx],
-            transitiontime: Math.max(1, Math.round(speedSlider.value / 200)),
-          });
-        },
-      },
-
-      // Snowfall: random slight flicker in cool white
-      snowfall: {
-        name: 'Snowfall Sparkle',
-        async tick() {
-          const baseBri = Number(briSlider.value) || 220;
-          const flicker = Math.floor((Math.random() - 0.5) * 40); // -20 to +20
-          const bri = Math.min(254, Math.max(100, baseBri + flicker));
-          await setLightState({
-            on: true,
-            bri,
-            sat: 30,
-            hue: 42000, // cool
-            transitiontime: 2,
-          });
-        },
-      },
-
-      // Fireplace: warm orange flicker
-      fireplace: {
-        name: 'Hearth Flicker',
-        async tick() {
-          const baseBri = Number(briSlider.value) || 180;
-          const flicker = Math.floor((Math.random() - 0.5) * 60); // -30 to +30
-          const bri = Math.min(254, Math.max(80, baseBri + flicker));
-          const hueJitter = Math.floor((Math.random() - 0.5) * 4000);
-          const hue = 9000 + hueJitter; // warm orange / amber range
-          await setLightState({
-            on: true,
-            bri,
-            sat: 230,
-            hue,
-            transitiontime: 2,
-          });
-        },
-      },
-    };
-
-    function startAnimation(key) {
-      const anim = Animations[key];
-      if (!anim) return;
-
-      stopAnimations(); // clear previous
-
-      let step = 0;
-      currentAnimation = key;
-
-      const loop = async () => {
-        // If we were stopped mid-loop, bail.
-        if (!currentAnimation || currentAnimation !== key) return;
-        try {
-          await anim.tick(step++);
-        } catch (err) {
-          appendLog(`Animation error (${anim.name}): ${err.message}`);
-          setStatus('error', err.message, 'err');
-          currentAnimation = null;
-          clearInterval(animationTimer);
-          animationTimer = null;
-          return;
-        }
-      };
-
-      const intervalMs = Number(speedSlider.value) || 800;
-      animationTimer = setInterval(loop, intervalMs);
-      // fire once immediately
-      loop();
-
-      setStatus('anim', `Running "${anim.name}"`, 'anim');
-      appendLog(`Animation started: ${anim.name} (interval ${intervalMs} ms)`);
-    }
-
-    async function stopAnimations() {
-      if (animationTimer) {
-        clearInterval(animationTimer);
-        animationTimer = null;
-      }
-      if (currentAnimation) {
-        appendLog(`Animation stopped: ${Animations[currentAnimation]?.name || currentAnimation}`);
-      }
-      currentAnimation = null;
-      setStatus('idle', 'Animations stopped; manual control active.');
-    }
-
-    animButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const animKey = btn.getAttribute('data-anim');
-        startAnimation(animKey);
-      });
-    });
-
-    stopAnimBtn.addEventListener('click', () => {
-      stopAnimations();
-    });
-
-    // Slightly helpful defaults for quick testing
-    // (fill in your actual values)
-    // bridgeIpInput.value = '192.168.1.xxx';
-    // apiKeyInput.value   = 'your-hue-username';
-    // lightIdInput.value  = 'your-festivia-light-id';
-
-    setStatus('idle', 'Ready when you are.');
-  </script>
+document.getElementById("stopAnimBtn").addEventListener("click", () => {
+  if (timer) clearInterval(timer);
+  timer = null;
+  current = null;
+  setStatus("idle", "Animations stopped");
+});
+</script>
 </body>
 </html>
